@@ -14,12 +14,12 @@ goto desktop
 :desktop
 :: http://help.adobe.com/en_US/air/build/WSfffb011ac560372f-6fa6d7e0128cca93d31-8000.html
 
-set SCREEN_SIZE=NexusOne
-::set SCREEN_SIZE=iPhoneRetina
+::set SCREEN_SIZE=NexusOne
+set SCREEN_SIZE=iPhoneRetina
 
 :desktop-run
 echo.
-echo Starting AIR Debug Launcher with screen size '%SCREEN_SIZE%'
+echo Starting AIR Debug Launcher with screen size '%SCREEN_SIZE%', xml info in '%APP_XML%' and app directory in '%APP_DIR%'
 echo.
 echo (hint: edit 'Run.bat' to test on device or change screen size)
 echo.

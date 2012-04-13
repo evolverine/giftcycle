@@ -44,7 +44,7 @@ set DEBUG_IP=
 
 
 :validation
-%SystemRoot%\System32\find /C "<id>%APP_ID%</id>" "%APP_XML%" > NUL
+find /C "<id>%APP_ID%</id>" "%APP_XML%" > NUL
 if errorlevel 1 goto badid
 goto end
 
