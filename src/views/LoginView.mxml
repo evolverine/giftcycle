@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+        xmlns:s="library://ns.adobe.com/flex/spark" 
+		title="Login">
+	
+	<fx:Script>
+		<![CDATA[
+		import flash.events.Event;
+		import flash.net.URLLoader;
+		import flash.net.URLRequest;
+		import flash.net.URLVariables;
+		
+		[Bindable]
+		private var userInfo:String = "";
+		
+		private function attemptLogin():void
+		{
+			var urlRequest:URLRequest = new URLRequest("http://www.scavenger.org.uk/API/login.php");
+			urlRequest.data = new URLVariables();
+			urlRequest.data.username_or_email = username.text;
+			urlRequest.data.password = password.text;
+			urlRequest.method = URLRequestMethod.POST;
+			
+			var urlLoader:URLLoader = new URLLoader(urlRequest);
+			urlLoader.addEventListener(Event.COMPLETE, onLoginProcessingComplete);
+		}
+		
+		private function onLoginProcessingComplete(event:Event):void
+		{
+			switch(URLLoader(event.target).data)
+			{
+				case "no match": this.currentState = "unsuccessful"; break;
+				default: userInfo = URLLoader(event.target).data; this.currentState = "successful"; break;
+			}
+		}
+		]]>
+	</fx:Script>
+	
+	<s:states>
+		<s:State name="startup"/>
+		<s:State name="unsuccessful"/>
+		<s:State name="successful"/>
+	</s:states>
+	
+	<s:VGroup horizontalAlign="center" width="100%">
+		<s:TextInput id="username"/>
+		<s:TextInput id="password" displayAsPassword="true" />
+		<s:Button id="submit" label="Log in" click="attemptLogin()"/>
+		
+		<s:Image source="@Embed('/../images/greenTick.jpg')" includeIn="successful"/>
+		<s:Label text="{userInfo}" includeIn="successful" />
+		
+		<s:Image source="@Embed('/../images/cross.jpg')" includeIn="unsuccessful"/>
+		<s:Label text="Sorry, try again." includeIn="unsuccessful" />
+	</s:VGroup>
+</s:View>
