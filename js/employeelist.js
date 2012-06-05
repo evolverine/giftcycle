@@ -3,10 +3,20 @@ var serviceURL = "http://localhost/directory/services/";
 var employees;
 
 $('#employeeListPage').bind('pageinit', function(event) {
-	getEmployeeList();
+	getOffersList();
 });
 
-function getEmployeeList() {
+function getOffersList() {
+	$('#employeeList li').remove();
+	$('#employeeList').append('<li><a href="employeedetails.html?id=' + "23" + '">' +
+			'<img src="pics/' + "something.jpg" + '"/>' +
+			'<h4>' + "Old rickety chair" + '</h4>' +
+			'<p>' + "pick up from Purves Rd." + '</p>' +
+			'<span class="ui-li-count">' + "3 days left" + '</span></a></li>');
+	$('#employeeList').listview('refresh');
+}
+
+function getEmployeeListOld() {
 	$.getJSON(serviceURL + 'getemployees.php', function(data) {
 		$('#employeeList li').remove();
 		employees = data.items;

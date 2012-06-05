@@ -1,7 +1,18 @@
-$('#detailsPage').live('pageshow', function(event) {
+function oldInit(event) {
 	var id = getUrlVars()["id"];
 	$.getJSON(serviceURL + 'getemployee.php?id='+id, displayEmployee);
-});
+}
+
+$('#detailsPage').live('pageshow', init);
+function init(event) {
+	var id = getUrlVars()["id"];
+	var xmlResult = $.parseXML('<?xml version="1.0" encoding="UTF-8"?><object id="23"><title>Juja</title></object>');
+	displayProduct(xmlResult);
+}
+
+function displayProduct(productXml) {
+	$('#fullName').text("something: " + $(productXml).find("object").find("title").text());
+}
 
 function displayEmployee(data) {
 	var employee = data.item;
