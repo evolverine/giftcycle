@@ -6,12 +6,14 @@ function oldInit(event) {
 $('#detailsPage').live('pageshow', init);
 function init(event) {
 	var id = getUrlVars()["id"];
-	var xmlResult = $.parseXML('<?xml version="1.0" encoding="UTF-8"?><object id="23"><title>Juja</title></object>');
+	var xmlResult = $.parseXML('<?xml version="1.0" encoding="UTF-8"?><offer id="23"><title>Old Rickety Chair</title><image>ricketyChair_medium.jpg</image><location>middle of Purves Rd., Kensal Green.</location></offer>');
 	displayProduct(xmlResult);
 }
 
 function displayProduct(productXml) {
-	$('#fullName').text("something: " + $(productXml).find("object").find("title").text());
+	$('#fullName').text($(productXml).find("offer").find("title").text());
+	$('#employeePic').attr('src', 'pics/' + $(productXml).find("offer").find("image").text());
+	$('#employeeTitle').text('Pick up from: ' + $(productXml).find("offer").find("location").text());
 }
 
 function displayEmployee(data) {
