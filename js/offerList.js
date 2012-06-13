@@ -2,7 +2,7 @@ var serviceURL = "http://localhost/directory/services/";
 
 var employees;
 
-$('#employeeListPage').bind('pageinit', function(event) {
+$('#offerListPage').bind('pageinit', function(event) {
 	getOffersList();
 });
 
