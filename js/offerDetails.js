@@ -12,14 +12,14 @@ function init(event) {
 
 function displayProduct(productXml) {
 	$('#fullName').text($(productXml).find("offer").find("title").text());
-	$('#employeePic').attr('src', 'pics/' + $(productXml).find("offer").find("image").text());
+	$('#offerImage').attr('src', 'pics/' + $(productXml).find("offer").find("image").text());
 	$('#employeeTitle').text('Pick up from: ' + $(productXml).find("offer").find("location").text());
 }
 
 function displayEmployee(data) {
 	var employee = data.item;
 	console.log(employee);
-	$('#employeePic').attr('src', 'pics/' + employee.picture);
+	$('#offerImage').attr('src', 'pics/' + employee.picture);
 	$('#fullName').text(employee.firstName + ' ' + employee.lastName);
 	$('#employeeTitle').text(employee.title);
 	$('#city').text(employee.city);
