@@ -1,19 +1,21 @@
 var serviceURL = "http://localhost/directory/services/";
-
 var employees;
+var offersListName = 'offersList';
+var offersList;
 
 $('#offerListPage').bind('pageinit', function(event) {
-	getOffersList();
+	offersList = $('#' + offersListName);
+	getOffers();
 });
 
-function getOffersList() {
-	$('#employeeList li').remove();
-	$('#employeeList').append('<li><a href="offerDetails.html?id=' + "23" + '">' +
+function getOffers() {
+	$('#'+offersListName+' li').remove();
+	offersList.append('<li><a href="offerDetails.html?id=' + "23" + '">' +
 			'<img src="pics/' + "ricketyChair_small.jpg" + '"/>' +
 			'<h4>' + "Old rickety chair" + '</h4>' +
 			'<p>' + "pick up from Purves Rd." + '</p>' +
 			'<span class="ui-li-count">' + "3 days left" + '</span></a></li>');
-	$('#employeeList').listview('refresh');
+	offersList.listview('refresh');
 }
 
 function getEmployeeListOld() {
