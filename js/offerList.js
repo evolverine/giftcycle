@@ -1,5 +1,4 @@
 var serviceURL = "http://localhost/directory/services/";
-var employees;
 var offersListName = 'offersList';
 var offersList;
 
