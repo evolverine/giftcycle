@@ -1,18 +1,33 @@
 var serviceURL = "http://localhost/directory/services/";
 var offersListName = 'offersList';
-var offersList;
+var offersListComp;
 
 $('#offerListPage').bind('pageinit', function(event) {
-	offersList = $('#' + offersListName);
-	getOffers();
+	offersListComp = $('#' + offersListName);
+	$.ajax({
+		url: 'allOffers.xml',
+		dataType: 'xml',
+		success: populateOffers
+	});
 });
 
-function getOffers() {
+function populateOffers(offersXML)
+{
 	$('#'+offersListName+' li').remove();
-	offersList.append('<li><a href="offerDetails.html?id=' + "23" + '">' +
-			'<img src="pics/' + "ricketyChair_small.jpg" + '"/>' +
-			'<h4>' + "Old rickety chair" + '</h4>' +
-			'<p>' + "pick up from Purves Rd." + '</p>' +
-			'<span class="ui-li-count">' + "3 days left" + '</span></a></li>');
-	offersList.listview('refresh');
+	
+	$(offersXML).find("offer").each(function() {
+		populateSingleOffer($(this));
+	});
+}
+
+function populateSingleOffer(offerNode) {
+	var expirationDate = new Date(0);
+	expirationDate.setUTCSeconds(offerNode.find("expires").text());
+	
+	offersListComp.append('<li><a href="offerDetails.html?id=' + offerNode.attr("id") + '">' +
+			'<img src="pics/' + offerNode.find("image").text() + '"/>' +
+			'<h4>' + offerNode.find("title").text() + '</h4>' +
+			'<p>' + offerNode.find("location").text() + '</p>' +
+			'<span class="ui-li-count">' + $.format.date(expirationDate, "dd MMMM") + '</span></a></li>');
+	offersListComp.listview('refresh');
 }

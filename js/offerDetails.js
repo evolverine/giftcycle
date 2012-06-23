@@ -6,8 +6,11 @@ function oldInit(event) {
 $('#detailsPage').live('pageshow', init);
 function init(event) {
 	var id = getUrlVars()["id"];
-	var xmlResult = $.parseXML('<?xml version="1.0" encoding="UTF-8"?><offer id="23"><title>Old Rickety Chair</title><image>ricketyChair_medium.jpg</image><location>middle of Purves Rd., Kensal Green.</location></offer>');
-	displayProduct(xmlResult);
+	$.ajax({
+		url:'fakeOffer_' + id + '.xml',
+		dataType: 'xml',
+		success: displayProduct
+	});
 }
 
 function displayProduct(productXml) {
