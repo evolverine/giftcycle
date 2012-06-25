@@ -16,7 +16,8 @@ function init(event) {
 function displayProduct(productXml) {
 	$('#fullName').text($(productXml).find("offer").find("title").text());
 	$('#offerImage').attr('src', 'pics/' + $(productXml).find("offer").find("image").text());
-	$('#offerLocation').text('Pick up from: ' + $(productXml).find("offer").find("location").text());
+	$('#offerLocation').text($(productXml).find("offer").find("location").text());
+	$('#offerDescription').text($(productXml).find("offer").find("description").text());
 }
 
 function displayEmployee(data) {
@@ -25,7 +26,7 @@ function displayEmployee(data) {
 	$('#offerImage').attr('src', 'pics/' + employee.picture);
 	$('#fullName').text(employee.firstName + ' ' + employee.lastName);
 	$('#offerLocation').text(employee.title);
-	$('#city').text(employee.city);
+	$('#description').text(employee.description);
 	console.log(employee.officePhone);
 	if (employee.managerId>0) {
 		$('#actionList').append('<li><a href="employeedetails.html?id=' + employee.managerId + '"><h3>View Manager</h3>' +

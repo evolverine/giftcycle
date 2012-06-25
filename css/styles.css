@@ -9,6 +9,10 @@
 	margin-bottom: 8px;
 }
 
+#offerLocation {
+	font-size: 9pt;
+}
+
 #actionList {
 	clear: both;
 }
