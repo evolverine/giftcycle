@@ -4,30 +4,37 @@ var offersListComp;
 
 $('#offerListPage').bind('pageinit', function(event) {
 	offersListComp = $('#' + offersListName);
-	$.ajax({
-		url: 'allOffers.xml',
-		dataType: 'xml',
-		success: populateOffers
-	});
+	
+    var feed = new google.feeds.Feed("http://direct.ilovefreegle.org/rss.php?group=freegle_redbridge");
+    feed.setNumEntries(200);
+    feed.setResultFormat(google.feeds.Feed.XML_FORMAT);
+    feed.includeHistoricalEntries();
+    feed.load(offersLoaded);
 });
+
+function offersLoaded(result) {
+	if (!result.error)
+		populateOffers($(result.xmlDocument));
+	else
+		itemsRequestError();
+}
 
 function populateOffers(offersXML)
 {
 	$('#'+offersListName+' li').remove();
-	
-	$(offersXML).find("offer").each(function() {
-		populateSingleOffer($(this));
-	});
+	offersXML.find("item").each(populateSingleOffer);
+	offersListComp.listview('refresh');
 }
 
-function populateSingleOffer(offerNode) {
-	var expirationDate = new Date(0);
-	expirationDate.setUTCSeconds(offerNode.find("expires").text());
+function populateSingleOffer() {
+	var offerNode = $(this);
 	
-	offersListComp.append('<li><a href="offerDetails.html?id=' + offerNode.attr("id") + '">' +
-			'<img src="pics/' + offerNode.find("image").text() + '"/>' +
+	offersListComp.append('<li><a href="' + offerNode.find("link").text() + '" target="_blank">' +
 			'<h4>' + offerNode.find("title").text() + '</h4>' +
 			'<p>' + offerNode.find("location").text() + '</p>' +
-			'<span class="ui-li-count">' + $.format.date(expirationDate, "dd MMMM") + '</span></a></li>');
-	offersListComp.listview('refresh');
+			'<span class="ui-li-count">' + $.format.date(offerNode.find("pubDate").text(), "dd MMMM") + '</span></a></li>');
+}
+
+function itemsRequestError(jqXHR, textStatus, errorThrown) {
+	offersListComp.append("Oops, error loading the items. Please make sure your network is working properly. Error: " + errorThrown);
 }
