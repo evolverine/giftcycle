@@ -10,9 +10,13 @@ $('#offerListPage').bind('pageinit', function(event) {
     feed.setResultFormat(google.feeds.Feed.XML_FORMAT);
     feed.includeHistoricalEntries();
     feed.load(offersLoaded);
+    
+    $.mobile.showPageLoadingMsg();
 });
 
 function offersLoaded(result) {
+	$.mobile.hidePageLoadingMsg();
+	
 	if (!result.error)
 		populateOffers($(result.xmlDocument));
 	else
@@ -29,7 +33,7 @@ function populateOffers(offersXML)
 function populateSingleOffer() {
 	var offerNode = $(this);
 	
-	offersListComp.append('<li><a href="' + offerNode.find("link").text() + '" target="_blank">' +
+	offersListComp.append('<li><a href="' + offerNode.find("link").text() + '" rel="external">' +
 			'<h4>' + offerNode.find("title").text() + '</h4>' +
 			'<p>' + offerNode.find("location").text() + '</p>' +
 			'<span class="ui-li-count">' + $.format.date(offerNode.find("pubDate").text(), "dd MMMM") + '</span></a></li>');
