@@ -1,4 +1,3 @@
-var serviceURL = "http://localhost/directory/services/";
 var offersListName = 'offersList';
 var offersListComp;
 

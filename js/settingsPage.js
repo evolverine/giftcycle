@@ -3,7 +3,7 @@ function oldInit(event) {
 	$.getJSON(serviceURL + 'getemployee.php?id='+id, displayEmployee);
 }
 
-$('#detailsPage').live('pageshow', init);
+$('#settingsPage').live('pageshow', init);
 function init(event) {
 	var id = getUrlVars()["id"];
 	$.ajax({
