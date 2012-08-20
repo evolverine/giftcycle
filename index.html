@@ -5,11 +5,18 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1"/>
 	<link rel="stylesheet" href="css/jquery.mobile-1.1.1.css" />
 	<link rel="stylesheet" href="css/styles.css" />
-	<script type="text/javascript">
-		function startUp()
-		{
-			document.addEventListener("deviceready", onDeviceReady, false); 
-		}
+	<script src="js/startup.js"></script>
+	<script src="http://www.google.com/jsapi"></script>
+	<script>
+	function startUp()
+	{
+		document.addEventListener("deviceready", onDeviceReady, false);
+		
+		google.load("feeds", "1", {callback:onGoogleFeedsReadyToUse});
+		
+		if(!window.device)
+			onDeviceReady();
+	}
 	</script>
 </head>
     
@@ -32,8 +39,6 @@
 	<script src="js/library/jquery.dateFormat-1.0.js"></script>
 	<script src="js/offerList.js"></script>
 	<script src="js/settingsPage.js"></script>
-
-	<script src="http://www.google.com/jsapi"></script>
 </body>
 
 </html>

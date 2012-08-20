@@ -5,23 +5,6 @@ $('#offerListPage').bind('pageinit', function(event) {
 	offersListComp = $('#' + offersListName);
 });
 
-function onDeviceReady()
-{
-	$.mobile.showPageLoadingMsg();
-	
-	google.setOnLoadCallback(onGoogleFeedsReadyToUse);
-	google.load("feeds", "1");
-}
-
-function onGoogleFeedsReadyToUse()
-{
-	var feed = new google.feeds.Feed("http://direct.ilovefreegle.org/rss.php?group=freegle_redbridge");
-    feed.setNumEntries(200);
-    feed.setResultFormat(google.feeds.Feed.XML_FORMAT);
-    feed.includeHistoricalEntries();
-    feed.load(offersLoaded);
-}
-
 function offersLoaded(result) {
 	$.mobile.hidePageLoadingMsg();
 	
@@ -48,5 +31,5 @@ function populateSingleOffer() {
 }
 
 function itemsRequestError(jqXHR, textStatus, errorThrown) {
-	offersListComp.append("Oops, error loading the items. Please make sure your network is working properly. Error: " + errorThrown);
+	alert("Oops, error loading the items. Please make sure your network is working properly. Error: " + errorThrown);
 }
