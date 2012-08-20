@@ -1,35 +1,39 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>GiftCycle app</title>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<link rel="stylesheet" href="css/jquery.mobile-1.0rc1.min.css" />
-<link rel="stylesheet" href="css/styles.css" />
-<script src="http://www.google.com/jsapi"></script>
-<script type="text/javascript">google.load("feeds", "1");</script>
+	<title>GiftCycle app</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1"/>
+	<link rel="stylesheet" href="css/jquery.mobile-1.0rc1.min.css" />
+	<link rel="stylesheet" href="css/styles.css" />
+	<script type="text/javascript">
+		function startUp()
+		{
+			document.addEventListener("deviceready", onDeviceReady, false); 
+		}
+	</script>
 </head>
     
-<body>
+<body onload="startUp()">
         
-<div id="offerListPage" data-role="page" >
-
-	<div data-role="header" data-position="fixed" data-theme="e">
-		<h1>Offers</h1>
+	<div id="offerListPage" data-role="page" >
+	
+		<div data-role="header" data-position="fixed" data-theme="e">
+			<h1>Offers</h1>
+		</div>
+	
+		<div data-role="content" data-theme="e">
+	         <ul id="offersList" data-role="listview" data-filter="true"></ul>
+	    </div>		
+	
 	</div>
+	
+	<script src="js/library/jquery.js"></script>
+	<script src="js/library/jquery.mobile-1.0rc1.min.js"></script>
+	<script src="js/library/jquery.dateFormat-1.0.js"></script>
+	<script src="js/offerList.js"></script>
+	<script src="js/settingsPage.js"></script>
 
-	<div data-role="content" data-theme="e">
-         <ul id="offersList" data-role="listview" data-filter="true"></ul>
-    </div>		
-
-</div>
-
-<script src="js/library/jquery.js"></script>
-<script src="js/library/jquery.mobile-1.0rc1.min.js"></script>
-<script src="js/library/jquery.dateFormat-1.0.js"></script>
-<script src="js/offerList.js"></script>
-<script src="js/settingsPage.js"></script>
-<script src="js/settings_freegleGroups.js"></script>
-
+	<script src="http://www.google.com/jsapi"></script>
 </body>
 
 </html>
