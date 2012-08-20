@@ -12,8 +12,6 @@
 	{
 		document.addEventListener("deviceready", onDeviceReady, false);
 		
-		google.load("feeds", "1", {callback:onGoogleFeedsReadyToUse});
-		
 		if(!window.device)
 			onDeviceReady();
 	}
