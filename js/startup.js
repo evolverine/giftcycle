@@ -1,6 +1,8 @@
 function onDeviceReady()
 {
 	$.mobile.showPageLoadingMsg();
+	
+	google.load("feeds", "1", {callback:onGoogleFeedsReadyToUse});
 }
 
 function onGoogleFeedsReadyToUse()
