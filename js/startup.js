@@ -7,9 +7,16 @@ function onDeviceReady()
 
 function onGoogleFeedsReadyToUse()
 {
-	var feed = new google.feeds.Feed("http://direct.ilovefreegle.org/rss.php?group=freegle_redbridge");
+	var feed = new google.feeds.Feed(getActiveFreegleGroup());
     feed.setNumEntries(200);
     feed.setResultFormat(google.feeds.Feed.XML_FORMAT);
     feed.includeHistoricalEntries();
     feed.load(offersLoaded);
+}
+
+function getActiveFreegleGroup()
+{
+	var savedGroup = window.localStorage.getItem("activeFreegleGroup");
+	var groupToLoad = savedGroup ? savedGroup : defaultFreegleGroup;
+	return groupToLoad;
 }

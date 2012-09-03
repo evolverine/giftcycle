@@ -1,0 +1,1 @@
+var defaultFreegleGroup = "http://direct.ilovefreegle.org/rss.php?group=freegle_redbridge";

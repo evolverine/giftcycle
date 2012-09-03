@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1"/>
 	<link rel="stylesheet" href="css/jquery.mobile-1.1.1.css" />
 	<link rel="stylesheet" href="css/styles.css" />
+	<script src="js/config.js"></script>
 	<script src="js/startup.js"></script>
 	<script src="http://www.google.com/jsapi"></script>
 	<script>
@@ -74,22 +75,26 @@
 	    	<li data-role="fieldcontain">
 	        	<fieldset data-role="controlgroup">
 					<legend>Choose the groups you want to follow:</legend>
-					<input type="checkbox" name="checkbox-1a" id="checkbox-1a" class="custom" />
-					<label for="checkbox-1a">Basingstoke</label>
+					<input type="checkbox" name="freegleGroup1" id="freegleGroup1" class="custom" value="http://direct.ilovefreegle.org/rss.php?group=BasingstokeFreegle" />
+					<label for="freegleGroup1">Basingstoke</label>
 	
-					<input type="checkbox" name="checkbox-2a" id="checkbox-2a" class="custom" />
-					<label for="checkbox-2a">Ascot</label>
+					<input type="checkbox" name="freegleGroup2" id="freegleGroup2" class="custom" value="http://direct.ilovefreegle.org/rss.php?group=ascot-freegle" />
+					<label for="freegleGroup2">Ascot</label>
 	
-					<input type="checkbox" name="checkbox-3a" id="checkbox-3a" class="custom" />
-					<label for="checkbox-3a">Amber Valley</label>
+					<input type="checkbox" name="freegleGroup3" id="freegleGroup3" class="custom" value="http://direct.ilovefreegle.org/rss.php?group=ambervalleye-recycle" />
+					<label for="freegleGroup3">Amber Valley</label>
 	
-					<input type="checkbox" name="checkbox-4a" id="checkbox-4a" class="custom" />
-					<label for="checkbox-4a">Bracknell</label>
+					<input type="checkbox" name="freegleGroup4" id="freegleGroup4" class="custom" value="http://direct.ilovefreegle.org/rss.php?group=bracknell-Freegle" />
+					<label for="freegleGroup4">Bracknell</label>
 			    </fieldset>
 			</li>
 	    </ul>
 	
 	  </div>
+	  
+	  <div data-role="footer" data-theme="e">
+			<a href="javascript:onSaveGroupButtonPressed()" data-role="button">Save</a>
+		</div>
 	
 	</div>
 	
